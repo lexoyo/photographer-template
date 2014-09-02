@@ -1,0 +1,123 @@
+@import url('http://fonts.googleapis.com/css?family=Indie+Flower');
+
+/* define a style for Title, Headings and Normal texts */
+.title,
+.heading1,
+.heading2,
+.heading3,
+.normal {
+    color: #FFFFFF;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    margin: 0;
+    font-weight: 100;
+}
+.title{
+    font-family: 'Indie Flower', cursive;
+}
+.normal {
+    font-size: 20px;
+    font-weight: 100;
+    color: #EEEEEE;
+}
+.page-link-active .normal {
+    font-weight: 400;
+}
+.normal a {
+    color: #FFFFFF;
+}
+a:hover {
+    text-decoration: none !important;
+}
+.footer .normal {
+    font-size: small;
+}
+/* title style */
+.title {
+  font-size: 40px;
+}
+.full-width{
+    width: 100% !important;
+}
+.right-side{
+    width: inherit !important;
+    right: 0 !important;
+}
+.bottom-side{
+    height: inherit !important;
+    bottom: 0 !important;
+}
+.silex-runtime .full-height{
+    height: 100% !important;
+}
+.fixed{
+    position: fixed !important;
+}
+.bottom{
+    top: initial !important;
+    bottom: 0 !important;
+}
+/* galleries */
+.gallery{
+    color: black;
+}
+.gallery ul li{
+    list-style: none;
+    margin: 10px;
+}
+.gallery ul li img {
+    width: 100% ;
+    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+    filter: gray; /* IE6-9 */
+}
+.gallery ul li img:hover {
+    filter: none;
+    -webkit-filter: grayscale(0);
+}
+.gallery ul {
+    margin: 10px;
+	-webkit-column-count: 3;
+	-moz-column-count: 3;
+	-o-column-count: 3;
+	-ms-column-count: 3;
+	column-count: 3;
+}
+.flickr ul {
+    list-style: none;
+}
+.flickr ul li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.element-0{
+	cursor: auto; background-color: rgb(32, 32, 32);
+}
+.element-1{
+	position: absolute; left: 0px; top: 0px; height: 74px; background-color: transparent;
+}
+.element-2{
+	height: 731px; width: 659px; top: 4px; left: 309px; position: absolute; background-color: transparent;
+}
+.element-3{
+	height: 61px; width: 247px; top: 671px; left: 15px; position: absolute;
+}
+.element-4{
+	height: 264px; width: 302px; top: 10px; left: 8px; position: absolute; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; background-color: rgba(32, 32, 32, 0.301961);
+}
+.element-5{
+	height: 59px; width: 306px; top: 38px; position: absolute; background-color: transparent;
+}
+.element-6{
+	height: 27px; width: 111px; top: 100px; left: 40px; position: absolute;
+}
+.element-7{
+	height: 25px; width: 111px; top: 135px; left: 40px; position: absolute;
+}
+.element-8{
+	height: 19px; width: 111px; top: 170px; left: 40px; position: absolute;
+}

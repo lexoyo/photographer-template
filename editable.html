@@ -1,0 +1,183 @@
+<head>
+	<title>Michael D. Dunn photography</title>
+	<meta charset="UTF-8">
+	<meta name="generator" content="Silex v2.0"> <!-- leave this for stats -->
+	<script type="text/javascript" src="http://static.silex.me/2.2/jquery.js"></script>
+	<script type="text/javascript" src="http://static.silex.me/2.2/jquery-ui.js"></script>
+	<script type="text/javascript" src="http://static.silex.me/2.2/jquery.ui.touch-punch.min.js"></script>
+	<script type="text/javascript" src="http://static.silex.me/2.2/pageable.js"></script>
+	<script type="text/javascript" src="http://static.silex.me/2.2/front-end.js"></script>
+	<!-- Normalize -->
+	<link href="http://static.silex.me/2.2/normalize.css" rel="stylesheet">
+	<!-- Silex style -->
+	<link href="http://static.silex.me/2.2/front-end.css" rel="stylesheet">
+
+	<style type="text/css" class="silex-style">@import url('http://fonts.googleapis.com/css?family=Indie+Flower');
+
+/* define a style for Title, Headings and Normal texts */
+.title,
+.heading1,
+.heading2,
+.heading3,
+.normal {
+    color: #FFFFFF;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    margin: 0;
+    font-weight: 100;
+}
+.title{
+    font-family: 'Indie Flower', cursive;
+}
+.normal {
+    font-size: 20px;
+    font-weight: 100;
+    color: #EEEEEE;
+}
+.page-link-active .normal {
+    font-weight: 400;
+}
+.normal a {
+    color: #FFFFFF;
+}
+a:hover {
+    text-decoration: none !important;
+}
+.footer .normal {
+    font-size: small;
+}
+/* title style */
+.title {
+  font-size: 40px;
+}
+.full-width{
+    width: 100% !important;
+}
+.right-side{
+    width: inherit !important;
+    right: 0 !important;
+}
+.bottom-side{
+    height: inherit !important;
+    bottom: 0 !important;
+}
+.silex-runtime .full-height{
+    height: 100% !important;
+}
+.fixed{
+    position: fixed !important;
+}
+.bottom{
+    top: initial !important;
+    bottom: 0 !important;
+}
+/* galleries */
+.gallery{
+    color: black;
+}
+.gallery ul li{
+    list-style: none;
+    margin: 10px;
+}
+.gallery ul li img {
+    width: 100% ;
+    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+    filter: gray; /* IE6-9 */
+}
+.gallery ul li img:hover {
+    filter: none;
+    -webkit-filter: grayscale(0);
+}
+.gallery ul {
+    margin: 10px;
+	-webkit-column-count: 3;
+	-moz-column-count: 3;
+	-o-column-count: 3;
+	-ms-column-count: 3;
+	column-count: 3;
+}
+.flickr ul {
+    list-style: none;
+}
+.flickr ul li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+</style>
+  <script type="text/javascript" class="silex-script">/*
+var albums = {
+    home: '72157608376528102',
+    abstract: '72157624708853721',
+    paysages: '72157622949851126',
+    portraits: '72157605117901038',
+    default: '',
+}
+*/
+
+document.write('<script type="text/javascript" src="js/jquery.flickr.js"></scr'+'ipt>');
+
+function flickIt(jQuerySelector, displayType, photosetId, opt_cbk){
+    jQuerySelector.html('loading...');
+    jQuerySelector.flickr({
+        api_key: "7b5f9448ae4547ff02d6ce3db22e482d",
+        type: 'photoset',
+        photoset_id: photosetId,
+        size: 'o',
+        thumb_size: 'm',
+        displayType: displayType,
+        callback: function(){
+            if (opt_cbk){
+                opt_cbk(jQuerySelector);
+            }
+        },
+        error: function(e){
+            jQuerySelector.html('Error loading flickr gallery. ' + e);
+        }
+    });
+}
+
+function slideIt(jQuerySelector){
+    $(jQuerySelector).find('ul > li:gt(0)').css('opacity', '0');
+    setInterval(function() {
+      $(jQuerySelector).find('ul > li:first')
+        .fadeOut(1000)
+        .next()
+        .css('opacity', '1')
+        .fadeIn(1000)
+        .end()
+        .appendTo($(jQuerySelector).find('ul'));
+    },  10000);
+}
+function getPhotosetId(pageName){
+    return pageName;
+    //return albums[pageName] || albums['default'];
+}
+function onPageChange(newUrl){
+    var currentPage = newUrl.substr(newUrl.indexOf('#!page-') + 7);
+    window.jQuerySelector = $(".gallery");
+    flickIt(jQuerySelector, 'gallery', getPhotosetId(currentPage));
+}
+$(function(){
+    window.jQuerySelector = $(".flickr .silex-element-content");
+    //flickIt(jQuerySelector, 'slideshow', albums.home, slideIt);
+    var currentPage = $('body').pageable().data().silexlabsPageable.options.currentPage
+    currentPage = currentPage.substr(currentPage.indexOf('page-') + 5);
+    flickIt(jQuerySelector, 'slideshow', currentPage, slideIt);
+    onPageChange(window.location.href);
+})
+$(window).bind( 'hashchange', function (e){
+    onPageChange(e.originalEvent.newURL);
+});
+</script>
+<meta name="publicationPath" content="/api/1.0/www/exec/put/.tmp/photo/"><style id="current-page-style">.page-72157612066607571{display:inherit; }</style></head>
+<body style="cursor: auto; background-color: rgb(32, 32, 32);" data-silex-type="container" class="ui-dropzone-active silex-runtime">
+	<a id="page-72157603491795248" data-silex-type="page" class="page-element">72157603491795248</a>
+
+
+
+<div data-silex-type="html" class="editable-style html-element paged-element full-width full-height flickr page-72157603491795248" style="position: absolute; left: 0px; top: 0px; height: 74px; background-color: transparent;"><div class="silex-element-content" style="width: 100%; height: 100%;"></div></div><a id="page-72157624060263403" data-silex-type="page" class="page-element">72157624060263403</a><a id="page-72157623035867274" data-silex-type="page" class="page-element">72157623035867274</a><a id="page-72157612066607571" data-silex-type="page" class="page-element">72157612066607571</a><div data-silex-type="container" class="editable-style container-element paged-element right-side bottom-side gallery page-72157623035867274 page-72157624060263403 page-72157612066607571" style="height: 731px; width: 659px; top: 4px; left: 309px; position: absolute; background-color: transparent;"></div><div data-silex-type="text" class="editable-style text-element bottom footer fixed" style="height: 61px; width: 247px; top: 671px; left: 15px; position: absolute;"><div class="silex-element-content normal" style="width: 100%; height: 100%;">This website is <a href="http://www.silex.me">powered by Silex, free website builder&nbsp;for designers</a>.&nbsp;</div></div><div data-silex-type="container" class="editable-style container-element fixed" style="height: 264px; width: 302px; top: 10px; left: 8px; position: absolute; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; background-color: rgba(32, 32, 32, 0.301961);"><div data-silex-type="text" class="editable-style text-element full-width" style="height: 59px; width: 306px; top: 38px; position: absolute; background-color: transparent;" data-silex-href="#!page-72157603491795248"><div class="silex-element-content normal" style="width: 100%; height: 100%;"><header class="title" style="text-align: center;">Michael D. Dunn</header></div></div><div data-silex-type="text" class="editable-style text-element" style="height: 27px; width: 111px; top: 100px; left: 40px; position: absolute;" data-silex-href="#!page-72157624060263403"><div class="silex-element-content normal" style="width: 100%; height: 100%;">30 days<br></div></div><div data-silex-type="text" class="editable-style text-element" style="height: 25px; width: 111px; top: 135px; left: 40px; position: absolute;" data-silex-href="#!page-72157623035867274"><div class="silex-element-content normal" style="width: 100%; height: 100%;">Sexy people<br></div></div><div data-silex-type="text" class="editable-style text-element page-link-active" style="height: 19px; width: 111px; top: 170px; left: 40px; position: absolute;" data-silex-href="#!page-72157612066607571"><div class="silex-element-content normal" style="width: 100%; height: 100%;">Abstract</div></div></div>
+</body>
