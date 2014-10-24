@@ -1,4 +1,4 @@
-﻿/*
+/*
  * jQuery Flickr - jQuery plug-in
  * Beta 1, Released 2008.02.26
  * https://code.google.com/p/jquery-flickr/source/browse/#svn%2Ftrunk
@@ -20,40 +20,42 @@ $.fn.flickr = function(o){
         group_id: null,
         tags: null,         // comma separated list
         tag_mode: null,     // allowed values: 'any' (OR), 'all' (AND)
-        text: null,			// free text search
+        text: null,         // free text search
         sort: null,         // date-posted-asc, date-posted-desc, date-taken-asc, date-taken-desc, interestingness-desc, interestingness-asc, relevance
         thumb_size: 's',    // allowed values: s (75x75), t (100x?), m (240x?)
         size: null,         // default: (500x?), allowed values: m (240x?),  o (original)
         per_page: null,     // default: 100, max: 500
-        page: null,     	// default: 1
+        page: null,         // default: 1
         displayType: null  //allowed values: litebox, slideshow, gallery - default: gallery
     };
     if(o) $.extend(s, o);
     return this.each(function(){
     var container = this;
-		var list = $('<ul>');
+        var list = $('<ul>');
         var url = $.flickr.format(s);
     $.getJSON(url, function(r){
           if (r.stat != "ok"){
               if (s.error){
                   s.error('flickr error: '+ r.message);
               }
-	        } else {
-	            if (s.type == 'photoset'){
-	                r.photos = r.photoset;
-	            }
-	            for (var i=0; i<r.photos.photo.length; i++){
-	                var photo = r.photos.photo[i];
-	                var t = 'http://farm'+photo['farm']+'.static.flickr.com/'+photo['server']+'/'+photo['id']+'_'+photo['secret']+'_'+s.thumb_size+'.jpg';
-	                var h = 'http://farm'+photo['farm']+'.static.flickr.com/'+photo['server']+'/'+photo['id']+'_';
-	                if (!s.size) h += photo['secret']+'.jpg';
-	                else if (s.size == 'o') h += photo['originalsecret']+'_o.'+photo['originalformat'];
-	                else h += photo['secret']+'_'+s.size+'.jpg';
+            } else {
+                if (s.type == 'photoset'){
+                    r.photos = r.photoset;
+                }
+                for (var i=0; i<r.photos.photo.length; i++){
+                    var photo = r.photos.photo[i];
+                    var t = 'http://farm'+photo['farm']+'.static.flickr.com/'+photo['server']+'/'+photo['id']+'_'+photo['secret']+'_'+s.thumb_size+'.jpg';
+                    var h = 'http://farm'+photo['farm']+'.static.flickr.com/'+photo['server']+'/'+photo['id']+'_';
+                    var flickrPage = 'https://www.flickr.com/photos/' + r.photos['owner'] + '/' + photo['id'] + '/in/set-' + s.photoset_id + '/lightbox/';
+                    if (!s.size) h += photo['secret']+'.jpg';
+                    else if (s.size == 'o') h += photo['originalsecret']+'_o.'+photo['originalformat'];
+                    else h += photo['secret']+'_'+s.size+'.jpg';
                   if (s.displayType === 'slideshow'){
                     list.append('<li style="background-image: url('+h+')" alt="'+photo['title']+'" /></li>');
                   }
                   else{
-                    list.append('<li><a href="'+h+'"><img src="'+t+'" alt="'+photo['title']+'" /></a></li>');
+                    //list.append('<li><a href="'+h+'"><img src="'+t+'" alt="'+photo['title']+'" /></a></li>');
+                    list.append('<li><a target="_blank" href="'+flickrPage+'"><img src="'+t+'" alt="'+photo['title']+'" /></a></li>');
                   }
               }
               if(s.displayType === 'litebox'){
@@ -65,7 +67,7 @@ $.fn.flickr = function(o){
                 s.callback();
               }
           }
-		}).error(function() {
+        }).error(function() {
         if (s.error){
             s.error('network error');
         }
