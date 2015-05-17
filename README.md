@@ -1,7 +1,8 @@
 photographer-template
 =====================
 
-This is a test of a [Silex](http://www.silex.me) website for a photographer. This test uses pictures from []()
+This is a test of a [Silex](http://www.silex.me) website for a photographer. It demonstrate the use of the [flickr widget
+ for Silex](https://github.com/silexlabs/Silex/issues/272)
 
 [Here is the website](http://lexoyo.me/photographer-template/#!page-72157624060263403) which uses [Michael Dunn's photos](https://www.flickr.com/photos/mikedefiant) for the example.
 
