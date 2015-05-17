@@ -9,6 +9,9 @@ var albums = {
 */
 
 document.write('<script type="text/javascript" src="js/jquery.flickr.js"></scr'+'ipt>');
+// lightbox
+document.write('<script type="text/javascript" src="js/jquery.fancybox.pack.js"></scr'+'ipt>');
+document.write('<link rel="stylesheet" href="css/jquery.fancybox.css"></link>');
 
 function flickIt(jQuerySelector, displayType, photosetId, opt_cbk){
     jQuerySelector.html('loading...');
@@ -17,9 +20,14 @@ function flickIt(jQuerySelector, displayType, photosetId, opt_cbk){
         type: 'photoset',
         photoset_id: photosetId,
         size: 'o',
-        thumb_size: 'm',
+        thumb_size: 'n',
         displayType: displayType,
         callback: function(){
+            // lightbox
+            if (displayType === 'fancybox'){
+              $('a').fancybox();
+            }
+            // callback
             if (opt_cbk){
                 opt_cbk(jQuerySelector);
             }
@@ -49,7 +57,7 @@ function getPhotosetId(pageName){
 function onPageChange(newUrl){
     var currentPage = newUrl.substr(newUrl.indexOf('#!page-') + 7);
     window.jQuerySelector = $(".gallery");
-    flickIt(jQuerySelector, 'gallery', getPhotosetId(currentPage));
+    flickIt(jQuerySelector, 'fancybox', getPhotosetId(currentPage));
 }
 $(function(){
     window.jQuerySelector = $(".flickr .silex-element-content");
@@ -60,5 +68,5 @@ $(function(){
     onPageChange(window.location.href);
 })
 $(window).bind( 'hashchange', function (e){
-    onPageChange(e.originalEvent.newURL);
+    onPageChange(window.location.href);
 });
